@@ -6,9 +6,16 @@ def abrir_archivo_json(archivo):
             data = json.load(file)
         return data
     except FileNotFoundError:
-        raise FileNotFoundError(f"El archivo '{archivo}' no se encontró.")
+        print(f"Error: El archivo '{archivo}' no se encontró.")
+        return None
     except json.JSONDecodeError as e:
-        raise ValueError(f"Error al decodificar el archivo JSON '{archivo}': {e}")
+        print(f"Error al decodificar el archivo JSON '{archivo}': {e}")
+        return None
+
+# Ejemplo de uso:
+datos = abrir_archivo_json("archivo_inexistente.json")
+if datos is not None:
+    print("Datos del archivo JSON:", datos)
 
 
 
